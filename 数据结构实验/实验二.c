@@ -141,6 +141,7 @@ SLNode *Combination(SLNode *head, SLNode *head2)
         return head;
     p=head->next;
     q=head2->next;
+    //找到头节点
     if(head->data<head2->data)
     {
         newhead = head;
