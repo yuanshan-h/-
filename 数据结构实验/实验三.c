@@ -31,7 +31,7 @@ int PopOpter(Opter *S)//弹出运算符栈
     if(S->top==-1)
     {
         printf("运算符栈为空\n");
-        exit(10);
+        exit(1);
     }
     S->top--;
     return 1;
@@ -42,7 +42,7 @@ int PopOpnd(Opnd *S)
     if(S->top==-1)
     {
         printf("运算符栈为空\n");
-        exit(11);
+        exit(1);
     }
     S->top--;
     return 1;
@@ -53,7 +53,7 @@ int PushOpter(Opter* S,char ch)
     if(S->top==Stack_Size-1)
     {
         printf("运算符栈满\n");
-        exit(12);
+        exit(1);
     }
     S->top++;
     S->Elem[S->top]=ch;
@@ -65,7 +65,7 @@ int PushOpnd(Opnd* S,double ch)//入操作数栈
     if(S->top==Stack_Size-1)
     {
         printf("运算符栈满\n");
-        exit(13);
+        exit(1);
     }
     S->top++;
     S->Elem[S->top]=ch;
@@ -77,7 +77,7 @@ char GetOpter(Opter *S)//获取运算符栈的栈顶元素
     if(S->top==-1)
     {
         printf("运算符栈为空\n");
-        exit(17);
+        exit(1);
     }
     return S->Elem[S->top];
 }
@@ -87,7 +87,7 @@ double GetOpnd(Opnd *S)
     if(S->top==-1)
     {
         printf("操作数栈为空\n");
-        exit(18);
+        exit(1);
     }
     return S->Elem[S->top];
 }
@@ -107,7 +107,7 @@ double Calc(double a,double b,char opt)//计算函数，传入两个数以及一个运算符
         }
         T=a/b;
     }
-    printf("中间过程输出：  %.2lf %c %.2lf = %.2lf\n",a,opt,b,T);
+    printf(" %.2lf %c %.2lf = %.2lf\n",a,opt,b,T);
     return T;    //返回得到的结果
 }
 
@@ -146,7 +146,7 @@ int Check(char *S,int len)//检查函数，记得考虑输入带小数点的数字的情况
     int i;
     for(i=0;i<len;i++){
         if(S[i]>='0'&&S[i]<='9')continue;
-        if(S[i]=='('||S[i]==')'||S[i]=='*'||S[i]=='/'||S[i]=='+'||S[i]=='-'||S[i]=='.')continue;
+        if(S[i]=='('||S[i]==')'||S[i]=='*'||S[i]=='/'||S[i]=='+'||S[i]=='-'||S[i]=='.'||S[i]=='#')continue;
         return 0;
     }
     return 1;
@@ -170,12 +170,12 @@ int main()
     scanf("%s",a);    //输入表达式，注意这里a不用取地址符&，因为数组其实就是一个地址，它保留的是数组第一个元素的首地址，a其实就是&a[0]
 
     len=strlen(a);   //求输入的表达式的长度，并打印出来
-    printf("字符长度为%d\n",len);
+    //printf("字符长度为%d\n",len);
 
     if(Check(a,len)==0)   //检查是否多输入了一些奇奇怪怪的东西
     {
         printf("输入中存在多余字符\n");
-        exit(19);
+        exit(1);
     }
 
     int i,j=0,k=0;

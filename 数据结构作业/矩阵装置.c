@@ -1,7 +1,10 @@
 #define SMAX 1000
 #include<stdio.h>
 #include<stdlib.h>
+#include<time.h>
+
 //三元组方法
+
 typedef struct{
     int i,j,v;
 }SPNode;
@@ -34,7 +37,7 @@ SPMatrix *create(int a[4][3])
     }
     return A;
 }
-SPMatrix *transpose(SPMatrix *A)
+SPMatrix *transform(SPMatrix *A)
 {
     SPMatrix *B;
     int p,q,col;
@@ -70,12 +73,18 @@ void show(SPMatrix *B) {
 	}
 }
 int main()
-{
+{   clock_t t1,t2;
+    t1=clock();
 	int a[4][3] = { {1,0,0},{0,0,4},{3,0,0},{5,0,0}};
     SPMatrix *t,*B;
     t=create(a);
-    B=transpose(t);
+    B=transform(t);
+    printf("Before transform:\n");
+    show(t);
+    printf("After transform:\n");
     show(B);
+    t2= clock();
+    printf("\n%f",(t2-t1));
 }
 /*
 //二维数组方法
@@ -91,6 +100,16 @@ int main()
             b[j][i]=a[i][j];
         }
     }
+    printf("Before transform:\n");
+    for (i=0;i<4;i++)
+    {
+        for(j=0;j<3;j++)
+        {
+            printf("%3d",b[i][j]);
+        }
+        printf("\n");
+    }
+    printf("After transform:\n");
     for (i=0;i<3;i++)
     {
         for(j=0;j<4;j++)
