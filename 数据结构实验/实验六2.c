@@ -1,18 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limits.h>
+
 
 #define max(n1,n2) ((n1 >= n2) ? n1 : n2)
 #define min(n1,n2) ((n1 <= n2) ? n1 : n2)
 
 int main()
 {
-    int i,j,maxnum = -1,minnum = INT_MAX,edges,n1,n2,edge;
+    int i,j,maxnum = -1,minnum = 999,edges,n1,n2,edge;
     int matrix[11][11];
     memset(matrix,-1,sizeof(matrix));
-    printf("please input the edges and pedge between 2 sides like 2 3 10\n");
-    printf("max n <= 10,min n >= 0\n");
+
     printf("the edges:");
     scanf("%d",&edges);
 
